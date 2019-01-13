@@ -4,6 +4,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 
+print('Starting ISSFEED service...')
+
 # Create Flask APP
 app_settings = os.getenv('APP_SETTINGS')
 
@@ -19,8 +21,11 @@ app.register_blueprint(location_blueprint)
 
 from src.apipoll import ApiPoll
 # Create ISS API poller and start polling
-iss_poll = ApiPoll(2)
+iss_poll = ApiPoll(10)
 
 db.drop_all()
 db.create_all()
 db.session.commit()
+
+
+print('ISSFEED service running ...')

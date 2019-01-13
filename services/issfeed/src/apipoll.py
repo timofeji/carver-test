@@ -18,8 +18,8 @@ class ApiPoll:
         try:
             self.poll_api()
             self.poll_thread.run()
-        except: 
-            print('ERROR: Failed to poll ISS api')
+        except Exception as err: 
+            print('ERROR: Failed to poll ISS api -', err.args )
             self.poll_thread.cancel()
 
         
@@ -34,7 +34,7 @@ class ApiPoll:
         try:
             db.session.add(ISSLocation(timestamp=timestamp, lon=longitude, lat=latitude))
             db.session.commit()
-        except:
-            print('ERROR: Failed to save location record')
+        except Exception as err:
+            print('ERROR: Failed to save location record - ', err.args)
 
        

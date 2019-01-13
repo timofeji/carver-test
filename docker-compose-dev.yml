@@ -8,7 +8,7 @@ services:
     volumes:
       - './services/issfeed:/usr/src/app'
     ports:
-      - 8001:5000
+      - 5001:5000
     environment:
       - FLASK_APP=src/__init__.py
       - FLASK_ENV=development
@@ -24,7 +24,7 @@ services:
       context: ./services/issfeed/src/database
       dockerfile: Dockerfile
     ports:
-      - 8002:5432
+      - 5435:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
