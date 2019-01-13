@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  issfeed:
+    build:
+      context: ./services/issfeed
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './services/issfeed:/usr/src/app'
+    ports:
+      - 8001:5000
+    environment:
+      - FLASK_APP=src/__init__.py
+      - FLASK_ENV=development
+      - APP_SETTINGS=src.config.DevelopmentConfig
+      - DATABASE_URL=postgres://postgres:postgres@issfeed-db:5432/issfeed_dev  
+      - DATABASE_TEST_URL=postgres://postgres:postgres@issfeed-db:5432/issfeed_test  
+
+    depends_on:
+      - issfeed-db
+
+  issfeed-db:  
+    build:
+      context: ./services/issfeed/src/database
+      dockerfile: Dockerfile
+    ports:
+      - 8002:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres

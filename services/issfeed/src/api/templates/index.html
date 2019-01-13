@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ISS LOCATION TRACKER</title>
+    <!-- meta -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- styles -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <br>
+            <h1>ISS LOCATION RECORD</h1>
+            <br>
+            <hr>
+            {% if isslocations %}
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col">Longitude</th>
+                        <th scope="col">Latitude</th
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for location in isslocations %}
+                        <tr>
+                            <th scope="row">{{location.timestamp}}</th>
+                            <td>{{location.lon}}</td>
+                            <td>{{location.lat}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>NULL</p>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <!-- scripts -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js">
+    </script>
+    {% block js %}{% endblock %}
+</body>
+
+</html>
